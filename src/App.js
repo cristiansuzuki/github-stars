@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { ThemeProvider } from "styled-components";
 import light from "./styles/themes/light";
 import dark from "./styles/themes/dark";
 import usePersistedState from "./utils/userPersistedState";
 
+import LoginBox from "./components/LoginBox";
 import Header from "./components/Header";
 import GlobalStyle from "./styles/global";
 
@@ -22,6 +23,7 @@ function App() {
         <GlobalStyle />
         {/* Passando o toggleTheme para ser recebido no componente Header */}
         <Header toggleTheme={toggleTheme} />
+        <LoginBox />
       </div>
     </ThemeProvider>
   );
