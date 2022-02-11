@@ -22,7 +22,7 @@ export const BoxOne = styled.div`
   padding: 32px;
   margin: 16px;
   box-shadow: 0 2px 10px 0 rgb(0, 0, 0, 20%);
-  background-color: #fff;
+  background-color: ${(props) => props.theme.colors.box};
 `;
 
 export const BoxTwo = styled.div`
@@ -60,4 +60,7 @@ export const Button = styled.button`
   background-color: #007a33;
 `;
 
-export const Logo = styled.img``;
+export const Logo = styled.img`
+  margin-bottom: 32px;
+  height: 100px;
+`;

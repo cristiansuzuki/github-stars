@@ -1,3 +1,5 @@
+import gitlight1 from "../../assets/gitlight1.svg";
+
 export default {
   title: "light",
 
@@ -8,4 +10,5 @@ export default {
     background: "#FFF",
     text: "black",
   },
+  logo: { gitlight1 },
 };
