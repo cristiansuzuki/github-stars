@@ -59,3 +59,5 @@ export const Button = styled.button`
   padding: 0.25em 1em;
   background-color: #007a33;
 `;
+
+export const Logo = styled.img``;
