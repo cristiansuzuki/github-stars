@@ -10,43 +10,52 @@ export const Container = styled.div`
 
 export const BoxOne = styled.div`
   display: flex;
-  alignItems: center;
-  justifyContent: space-between;
+  align-items: center;
+  justify-content: center;
   flex-direction: {
     xs: "column",
     sm: "row",
   }
   width: 100%;
-  maxWidth: 700px;
-  borderRadius: 5px;
+  max-width: 700px;
+  border-radius: 5px;
   padding: 32px;
   margin: 16px;
-  boxShadow: 0 2px 10px 0 rgb(0, 0, 0, 20%);
-  backgroundColor: #fff;
+  box-shadow: 0 2px 10px 0 rgb(0, 0, 0, 20%);
+  background-color: #fff;
 `;
 
 export const BoxTwo = styled.div`
   display: flex;
-  flexdirection: column;
-  alignItems: center;
-  justifyContent: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: {
     xs: 100%,
     sm: 50%,
   }
-  textAlign: center;
-  marginBottom: 32px;
+  text-align: center;
+  margin-bottom: 32px;
 `;
 
 export const Title = styled.text`
-  marginbottom: 32px;
+  font-size: 24px;
+  margin-bottom: 32px;
   color: ${(props) => props.theme.colors.text};
 `;
 
 export const TextInput = styled.input`
-  type: text;
+  height: 40px;
+  padding: 10px;
+  margin-bottom: 10px;
 `;
 
 export const Button = styled.button`
-  type: submit;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid;
+  color: #e4e7eb;
+  margin: 0 1em;
+  padding: 0.25em 1em;
+  background-color: #007a33;
 `;

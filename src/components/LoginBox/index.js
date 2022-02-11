@@ -7,8 +7,8 @@ function LoginBox() {
       <BoxOne>
         <BoxTwo>
           <Title>Login</Title>
-          <TextInput placeholder="Usuário" />
-          <Button />
+          <TextInput type="text" placeholder="Usuário do GitHub" />
+          <Button> Entrar </Button>
         </BoxTwo>
       </BoxOne>
     </Container>
