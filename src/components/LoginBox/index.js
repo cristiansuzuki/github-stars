@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import gitdark1 from "../../assets/gitdark1.svg";
 import gitlight1 from "../../assets/gitlight1.svg";
-import light from "../../styles/themes/light";
-import dark from "../../styles/themes/dark";
-import { ThemeProvider } from "styled-components";
+import { ThemeContext } from "styled-components";
 
 import {
   Container,
@@ -16,13 +14,12 @@ import {
 } from "./styles";
 
 function LoginBox() {
-  const [theme, setTheme] = useState(dark);
+  const { title } = useContext(ThemeContext);
   return (
     <Container>
       <BoxOne>
         <BoxTwo>
-          {console.log(theme)}
-          {theme.title === "dark" ? (
+          {title === "dark" ? (
             <Logo src={gitdark1} />
           ) : (
             <Logo src={gitlight1} />
