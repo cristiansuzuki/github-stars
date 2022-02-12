@@ -8,6 +8,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
+        {/* Uso de Rotas no React com react-router-dom */}
         <Route path="/" exact element={<App />} />
         <Route path="/main/:username" element={<Main />} />
       </Routes>

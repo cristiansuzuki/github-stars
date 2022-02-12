@@ -17,6 +17,7 @@ function LoginBox() {
           as="form"
           onSubmit={(event) => {
             event.preventDefault();
+            // Redireciona para a rota /main/:username
             navigate(`/main/${username}`);
           }}
         >
