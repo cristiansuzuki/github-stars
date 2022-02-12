@@ -2,13 +2,13 @@ import React, { useState, useContext } from "react";
 import gitdark1 from "../../assets/gitdark1.svg";
 import gitlight1 from "../../assets/gitlight1.svg";
 import { ThemeContext } from "styled-components";
-import { apiGithub } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 import { Container, BoxOne, BoxTwo, TextInput, Button, Logo } from "./styles";
 
 function LoginBox() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
-  const [userValido, setUserValido] = useState(false);
   const { title } = useContext(ThemeContext);
   return (
     <Container>
@@ -17,6 +17,7 @@ function LoginBox() {
           as="form"
           onSubmit={(event) => {
             event.preventDefault();
+            navigate(`/main/${username}`);
           }}
         >
           {title === "dark" ? (
@@ -29,19 +30,7 @@ function LoginBox() {
             type="text"
             placeholder="Usuário do GitHub"
             onChange={(event) => {
-              const valor = event.target.value;
-              console.log(valor);
-              fetch(`${apiGithub}${valor}`, { method: "GET" }).then(
-                (retorno) => {
-                  if (retorno.status === 200) {
-                    console.log("STATUS 200 !!!");
-                    setUsername(valor);
-                    setUserValido(true);
-                  } else if (retorno.status === 404) {
-                    setUserValido(false);
-                  }
-                }
-              );
+              setUsername(event.target.value);
             }}
           />
           <Button type="submit"> Entrar </Button>

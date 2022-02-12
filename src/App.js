@@ -16,15 +16,17 @@ function App() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
-        {/* Estilos globais do CSS */}
-        <GlobalStyle />
-        {/* Passando o toggleTheme para ser recebido no componente Header */}
-        <Header toggleTheme={toggleTheme} />
-        <LoginBox />
-      </div>
-    </ThemeProvider>
+    <div>
+      <ThemeProvider theme={theme}>
+        <div className="App">
+          {/* Estilos globais do CSS */}
+          <GlobalStyle />
+          {/* Passando o toggleTheme para ser recebido no componente Header */}
+          <Header toggleTheme={toggleTheme} />
+          <LoginBox />
+        </div>
+      </ThemeProvider>
+    </div>
   );
 }
 
