@@ -8,7 +8,7 @@ export default {
     secundary: "#053B06",
     box: "#181818",
     background: "#121212",
-    text: "#white",
+    text: "white",
   },
   logo: gitdark1,
 };

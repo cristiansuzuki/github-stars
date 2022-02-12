@@ -48,14 +48,16 @@ export const TextInput = styled.input`
   height: 40px;
   padding: 10px;
   margin-bottom: 10px;
+  border-radius: 5px;
+  transition: 0.2s ease-in-out;
+  border: 1px solid;
 `;
 
 export const Button = styled.button`
   width: 100%;
-  border-radius: 3px;
+  border-radius: 5px;
   border: 1px solid;
-  color: #e4e7eb;
-  margin: 0 1em;
+  color: ${(props) => props.theme.colors.text};
   padding: 0.25em 1em;
   background-color: #007a33;
 `;

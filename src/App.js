@@ -3,7 +3,6 @@ import { ThemeProvider } from "styled-components";
 import light from "./styles/themes/light";
 import dark from "./styles/themes/dark";
 import usePersistedState from "./utils/userPersistedState";
-
 import LoginBox from "./components/LoginBox";
 import Header from "./components/Header";
 import GlobalStyle from "./styles/global";
