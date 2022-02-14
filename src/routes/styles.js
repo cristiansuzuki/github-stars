@@ -44,11 +44,11 @@ export const UserLogo = styled.img`
   border-radius: 50%;
 `;
 
-export const UserName = styled.text`
+export const UserName = styled.p`
   font-size: 18px;
 `;
 
-export const UserLocation = styled.text`
+export const UserLocation = styled.p`
   font-size: 12px;
 `;
 
@@ -58,7 +58,7 @@ export const UserLocationLabel = styled.label`
   font-weight: bold;
 `;
 
-export const UserFollowers = styled.text`
+export const UserFollowers = styled.p`
   font-size: 12px;
 `;
 
@@ -68,7 +68,7 @@ export const UserFollowersLabel = styled.label`
   font-weight: bold;
 `;
 
-export const UserBio = styled.text`
+export const UserBio = styled.p`
   font-size: 12px;
 `;
 
@@ -78,7 +78,7 @@ export const UserBioLabel = styled.label`
   font-weight: bold;
 `;
 
-export const UserCreatedAt = styled.text`
+export const UserCreatedAt = styled.p`
   font-size: 12px;
 `;
 
@@ -88,7 +88,17 @@ export const UserCreatedAtLabel = styled.label`
   font-weight: bold;
 `;
 
-export const UserPublicRepos = styled.text`
+export const UserMostUsedLanguage = styled.p`
+  font-size: 12px;
+`;
+
+export const UserMostUsedLanguageLabel = styled.label`
+  font-size: 15px;
+  margin-bottom: 10px;
+  font-weight: bold;
+`;
+
+export const UserPublicRepos = styled.p`
   font-size: 12px;
 `;
 
@@ -102,4 +112,12 @@ export const BoxThree = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  label {
+    display: flex;
+    align-items: center;
+    p {
+      font-size: 15px;
+      margin-left: 5px;
+    }
+  }
 `;

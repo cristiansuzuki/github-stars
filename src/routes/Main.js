@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import moment from "moment";
+import "moment/locale/pt-br";
 import { apiGithub } from "../services/api";
 import usePersistedState from "../utils/userPersistedState";
 import Header from "../components/Header";
@@ -25,10 +27,13 @@ import {
   UserBioLabel,
   UserCreatedAtLabel,
   UserPublicReposLabel,
+  UserMostUsedLanguage,
+  UserMostUsedLanguageLabel,
 } from "./styles";
 
 function Main() {
   const params = useParams();
+  const [mostUsedLanguage, setMostUsedLanguage] = useState("");
   const [user, setUser] = useState({});
   const [theme, setTheme] = usePersistedState("theme", light);
 
@@ -40,7 +45,19 @@ function Main() {
   async function getMostUserLanguages() {
     const repos = await fetch(`${apiGithub}${params.username}/repos`);
     const reposData = await repos.json();
-    console.log("Repos:", reposData);
+    const language = reposData
+      .reduce((previousValue, currentValue) => {
+        const languageFind = previousValue.find(
+          ({ name }) => name === currentValue.language
+        );
+        languageFind
+          ? languageFind.count++
+          : previousValue.push({ name: currentValue.language, count: 1 });
+        return previousValue;
+      }, [])
+      .sort((a, b) => b.count - a.count)[0]?.name;
+
+    setMostUsedLanguage(language);
   }
 
   useEffect(() => {
@@ -48,9 +65,9 @@ function Main() {
     fetch(`${apiGithub}${params.username}`, { method: "GET" }).then(
       async (retorno) => {
         if (retorno.status === 200) {
+          await getMostUserLanguages();
           // Se der Status 200 (OK), da um setUser com o retorno da API em json
           setUser(await retorno.json());
-          getMostUserLanguages();
         } else if (retorno.status === 404) {
         }
       }
@@ -89,8 +106,17 @@ function Main() {
 
                 <UserCreatedAtLabel>
                   Entrou no GitHub:{" "}
-                  <UserCreatedAt>{user.created_at}</UserCreatedAt>{" "}
+                  <UserCreatedAt>
+                    {moment(user.created_at).format("LL")}
+                  </UserCreatedAt>{" "}
                 </UserCreatedAtLabel>
+
+                <UserMostUsedLanguageLabel>
+                  Linguagem mais usada:{" "}
+                  <UserMostUsedLanguage>
+                    {mostUsedLanguage}
+                  </UserMostUsedLanguage>
+                </UserMostUsedLanguageLabel>
               </BoxThree>
             </BoxOne>
           </Container>
