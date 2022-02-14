@@ -37,6 +37,12 @@ function Main() {
     setTheme(theme.title === "light" ? dark : light);
   };
 
+  async function getMostUserLanguages() {
+    const repos = await fetch(`${apiGithub}${params.username}/repos`);
+    const reposData = await repos.json();
+    console.log("Repos:", reposData);
+  }
+
   useEffect(() => {
     // Fetch na API do Git com os parametros do usuario que vieram da página inicial
     fetch(`${apiGithub}${params.username}`, { method: "GET" }).then(
@@ -44,9 +50,8 @@ function Main() {
         if (retorno.status === 200) {
           // Se der Status 200 (OK), da um setUser com o retorno da API em json
           setUser(await retorno.json());
-          console.log(retorno);
+          getMostUserLanguages();
         } else if (retorno.status === 404) {
-          console.log(retorno);
         }
       }
     );
