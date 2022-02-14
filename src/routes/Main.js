@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { apiGithub } from "../services/api";
 import usePersistedState from "../utils/userPersistedState";
-import MainBox from "../components/MainBox";
 import Header from "../components/Header";
 import GlobalStyle from "../styles/global";
 import { ThemeProvider } from "styled-components";
