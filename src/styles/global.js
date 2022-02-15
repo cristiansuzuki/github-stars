@@ -9,6 +9,7 @@ export default createGlobalStyle`
 
     body {
         background:  ${(props) => props.theme.colors.background};
+        transition: background-color 0.5s;
         font-size: 14px;
         color:  ${(props) => props.theme.colors.text};
         font-family: sans-serif;

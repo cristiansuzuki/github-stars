@@ -46,6 +46,7 @@ export const UserLogo = styled.img`
 
 export const UserName = styled.p`
   font-size: 18px;
+  font-weight: bold;
 `;
 
 export const UserLocation = styled.p`
@@ -117,6 +118,7 @@ export const BoxThree = styled.div`
     align-items: center;
     p {
       font-size: 15px;
+      font-weight: initial;
       margin-left: 5px;
     }
   }

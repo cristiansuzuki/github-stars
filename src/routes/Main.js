@@ -42,9 +42,14 @@ function Main() {
     setTheme(theme.title === "light" ? dark : light);
   };
 
-  async function getMostUserLanguages() {
+  async function getMostUsedLanguages() {
+    // Lógica para filtrar os repositórios do usuário
     const repos = await fetch(`${apiGithub}${params.username}/repos`);
+
+    // Transforma o resultado em um JSON
     const reposData = await repos.json();
+
+    // Da um Reduce na const language
     const language = reposData
       .reduce((previousValue, currentValue) => {
         const languageFind = previousValue.find(
@@ -55,6 +60,7 @@ function Main() {
           : previousValue.push({ name: currentValue.language, count: 1 });
         return previousValue;
       }, [])
+      // Ordena o resultado pelo número de linguagens encontradas
       .sort((a, b) => b.count - a.count)[0]?.name;
 
     setMostUsedLanguage(language);
@@ -65,7 +71,7 @@ function Main() {
     fetch(`${apiGithub}${params.username}`, { method: "GET" }).then(
       async (retorno) => {
         if (retorno.status === 200) {
-          await getMostUserLanguages();
+          await getMostUsedLanguages();
           // Se der Status 200 (OK), da um setUser com o retorno da API em json
           setUser(await retorno.json());
         } else if (retorno.status === 404) {

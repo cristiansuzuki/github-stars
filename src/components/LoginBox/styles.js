@@ -23,6 +23,7 @@ export const BoxOne = styled.div`
   margin: 16px;
   box-shadow: 0 2px 10px 0 rgb(0, 0, 0, 20%);
   background-color: ${(props) => props.theme.colors.box};
+  transition: background-color 0.5s;
 `;
 
 export const BoxTwo = styled.div`
@@ -55,11 +56,16 @@ export const TextInput = styled.input`
 
 export const Button = styled.button`
   width: 100%;
-  border-radius: 5px;
+  border-radius: 8px;
   border: 1px solid;
   color: ${(props) => props.theme.colors.text};
   padding: 0.25em 1em;
   background-color: #007a33;
+  :hover {
+    transition: 0.2s ease-in-out;
+    background-color: #00a853;
+    cursor: pointer;
+  }
 `;
 
 export const Logo = styled.img`
