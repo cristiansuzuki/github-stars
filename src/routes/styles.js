@@ -109,6 +109,16 @@ export const UserPublicReposLabel = styled.label`
   font-weight: bold;
 `;
 
+export const UserOrganizations = styled.p`
+  font-size: 12px;
+`;
+
+export const UserOrganizationsLabel = styled.label`
+  font-size: 15px;
+  margin-bottom: 10px;
+  font-weight: bold;
+`;
+
 export const BoxThree = styled.div`
   display: flex;
   flex-direction: column;

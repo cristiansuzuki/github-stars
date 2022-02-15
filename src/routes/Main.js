@@ -29,11 +29,14 @@ import {
   UserPublicReposLabel,
   UserMostUsedLanguage,
   UserMostUsedLanguageLabel,
+  UserOrganizations,
+  UserOrganizationsLabel,
 } from "./styles";
 
 function Main() {
   const params = useParams();
   const [mostUsedLanguage, setMostUsedLanguage] = useState("");
+  const [userOrganizations, setUserOrganizations] = useState("");
   const [user, setUser] = useState({});
   const [theme, setTheme] = usePersistedState("theme", light);
 
@@ -66,12 +69,25 @@ function Main() {
     setMostUsedLanguage(language);
   }
 
+  async function getUserOrganizations() {
+    const organizations = await fetch(`${apiGithub}${params.username}/orgs`);
+    const organizationsData = await organizations.json();
+    const organizationsName = organizationsData.map(({ login }) => login);
+    const organizationList = [];
+    organizationList.push(organizationsName[0]);
+    if (organizationsName[0] === undefined) {
+      return setUserOrganizations("Nenhuma organização encontrada");
+    }
+    setUserOrganizations(organizationList);
+  }
+
   useEffect(() => {
     // Fetch na API do Git com os parametros do usuario que vieram da página inicial
     fetch(`${apiGithub}${params.username}`, { method: "GET" }).then(
       async (retorno) => {
         if (retorno.status === 200) {
           await getMostUsedLanguages();
+          getUserOrganizations();
           // Se der Status 200 (OK), da um setUser com o retorno da API em json
           setUser(await retorno.json());
         } else if (retorno.status === 404) {
@@ -123,6 +139,11 @@ function Main() {
                     {mostUsedLanguage}
                   </UserMostUsedLanguage>
                 </UserMostUsedLanguageLabel>
+
+                <UserOrganizationsLabel>
+                  Organizações:{" "}
+                  <UserOrganizations>{userOrganizations}</UserOrganizations>
+                </UserOrganizationsLabel>
               </BoxThree>
             </BoxOne>
           </Container>
