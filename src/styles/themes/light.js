@@ -1,6 +1,6 @@
 import gitlight1 from "../../assets/gitlight1.svg";
 
-export default {
+const light = {
   title: "light",
 
   colors: {
@@ -12,3 +12,5 @@ export default {
   },
   logo: { gitlight1 },
 };
+
+export default light;

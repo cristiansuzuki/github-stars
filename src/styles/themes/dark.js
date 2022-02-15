@@ -1,6 +1,6 @@
 import gitdark1 from "../../assets/gitdark1.svg";
 
-export default {
+const dark = {
   title: "dark",
 
   colors: {
@@ -12,3 +12,5 @@ export default {
   },
   logo: gitdark1,
 };
+
+export default dark;
