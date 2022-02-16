@@ -52,8 +52,13 @@ function Main() {
     // Transforma o resultado em um JSON
     const reposData = await repos.json();
 
+    // Filtra as lingaugens que são null ou undefined
+    const reposFiltrados = reposData.filter(function (dados) {
+      return dados.language !== null;
+    });
+
     // Da um Reduce na const language
-    const language = reposData
+    const language = reposFiltrados
       .reduce((previousValue, currentValue) => {
         const languageFind = previousValue.find(
           ({ name }) => name === currentValue.language
@@ -65,7 +70,11 @@ function Main() {
       }, [])
       // Ordena o resultado pelo número de linguagens encontradas
       .sort((a, b) => b.count - a.count)[0]?.name;
-
+    // if (typeof language === "object") {
+    //   const languageNull = reposData[1];
+    //   setMostUsedLanguage(languageNull.language);
+    //   console.log(languageNull);
+    // }
     setMostUsedLanguage(language);
   }
 
