@@ -47,7 +47,9 @@ function Main() {
 
   async function getMostUsedLanguages() {
     // Lógica para filtrar os repositórios do usuário
-    const repos = await fetch(`${apiGithub}${params.username}/repos`);
+    const repos = await fetch(
+      `${apiGithub}${params.username}/repos?per_page=100`
+    );
 
     // Transforma o resultado em um JSON
     const reposData = await repos.json();
@@ -70,11 +72,6 @@ function Main() {
       }, [])
       // Ordena o resultado pelo número de linguagens encontradas
       .sort((a, b) => b.count - a.count)[0]?.name;
-    // if (typeof language === "object") {
-    //   const languageNull = reposData[1];
-    //   setMostUsedLanguage(languageNull.language);
-    //   console.log(languageNull);
-    // }
     setMostUsedLanguage(language);
   }
 
@@ -83,7 +80,7 @@ function Main() {
     const organizationsData = await organizations.json();
     const organizationsName = organizationsData.map(({ login }) => login);
     const organizationList = [];
-    organizationList.push(organizationsName[0]);
+    organizationList.push(organizationsName.join(", "));
     if (organizationsName[0] === undefined) {
       return setUserOrganizations("Nenhuma organização encontrada");
     }
