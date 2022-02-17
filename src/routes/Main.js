@@ -35,6 +35,7 @@ import {
 
 function Main() {
   const params = useParams();
+  const [status404, setStatus404] = useState(false);
   const [mostUsedLanguage, setMostUsedLanguage] = useState("");
   const [userOrganizations, setUserOrganizations] = useState("");
   const [user, setUser] = useState({});
@@ -94,9 +95,11 @@ function Main() {
         if (retorno.status === 200) {
           await getMostUsedLanguages();
           getUserOrganizations();
+
           // Se der Status 200 (OK), da um setUser com o retorno da API em json
           setUser(await retorno.json());
         } else if (retorno.status === 404) {
+          setStatus404(true);
           // FAZER LÓGICA PARA QUANDO NÃO ENCONTRAR O USUÁRIO !!!!!!
           // FAZER LÓGICA PARA QUANDO NÃO ENCONTRAR O USUÁRIO !!!!!!
           // FAZER LÓGICA PARA QUANDO NÃO ENCONTRAR O USUÁRIO !!!!!!
@@ -114,8 +117,16 @@ function Main() {
           <Container>
             <BoxOne>
               <BoxTwo>
-                <UserLogo src={user.avatar_url} />
-                <UserName>{user.name}</UserName>
+                <UserLogo
+                  src={
+                    status404
+                      ? "https://c.tenor.com/IHdlTRsmcS4AAAAM/404.gif"
+                      : user.avatar_url
+                  }
+                ></UserLogo>
+                <UserName>
+                  {status404 ? "Usuário não encontrado" : user.name}
+                </UserName>
               </BoxTwo>
               <BoxThree>
                 <UserBioLabel>
