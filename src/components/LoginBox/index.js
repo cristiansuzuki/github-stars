@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import gitdark1 from "../../assets/gitdark1.svg";
 import gitlight1 from "../../assets/gitlight1.svg";
 import { ThemeContext } from "styled-components";
@@ -10,6 +10,7 @@ function LoginBox() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const { title } = useContext(ThemeContext);
+
   return (
     <Container>
       <BoxOne>
@@ -34,7 +35,9 @@ function LoginBox() {
               setUsername(event.target.value);
             }}
           />
-          <Button type="submit"> Entrar </Button>
+          <Button disabled={!username} type="submit">
+            Entrar
+          </Button>
         </BoxTwo>
       </BoxOne>
     </Container>

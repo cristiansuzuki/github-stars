@@ -97,6 +97,9 @@ function Main() {
           // Se der Status 200 (OK), da um setUser com o retorno da API em json
           setUser(await retorno.json());
         } else if (retorno.status === 404) {
+          // FAZER LÓGICA PARA QUANDO NÃO ENCONTRAR O USUÁRIO !!!!!!
+          // FAZER LÓGICA PARA QUANDO NÃO ENCONTRAR O USUÁRIO !!!!!!
+          // FAZER LÓGICA PARA QUANDO NÃO ENCONTRAR O USUÁRIO !!!!!!
         }
       }
     );

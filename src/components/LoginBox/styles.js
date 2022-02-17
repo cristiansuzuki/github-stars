@@ -56,7 +56,7 @@ export const TextInput = styled.input`
 
 export const Button = styled.button`
   width: 100%;
-  border-radius: 8px;
+  border-radius: 5px;
   border: 1px solid;
   color: ${(props) => props.theme.colors.text};
   padding: 0.25em 1em;
