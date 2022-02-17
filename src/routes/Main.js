@@ -9,6 +9,7 @@ import GlobalStyle from "../styles/global";
 import { ThemeProvider } from "styled-components";
 import light from "../styles/themes/light";
 import dark from "../styles/themes/dark";
+import { Bars } from "react-loading-icons";
 
 import {
   Container,
@@ -35,6 +36,7 @@ import {
 
 function Main() {
   const params = useParams();
+  const [loading, setLoading] = useState(true);
   const [status404, setStatus404] = useState(false);
   const [mostUsedLanguage, setMostUsedLanguage] = useState("");
   const [userOrganizations, setUserOrganizations] = useState("");
@@ -98,11 +100,10 @@ function Main() {
 
           // Se der Status 200 (OK), da um setUser com o retorno da API em json
           setUser(await retorno.json());
+          setLoading(false);
         } else if (retorno.status === 404) {
           setStatus404(true);
-          // FAZER LÓGICA PARA QUANDO NÃO ENCONTRAR O USUÁRIO !!!!!!
-          // FAZER LÓGICA PARA QUANDO NÃO ENCONTRAR O USUÁRIO !!!!!!
-          // FAZER LÓGICA PARA QUANDO NÃO ENCONTRAR O USUÁRIO !!!!!!
+          setLoading(false);
         }
       }
     );
@@ -116,55 +117,62 @@ function Main() {
           <Header toggleTheme={toggleTheme} />
           <Container>
             <BoxOne>
-              <BoxTwo>
-                <UserLogo
-                  src={
-                    status404
-                      ? "https://c.tenor.com/IHdlTRsmcS4AAAAM/404.gif"
-                      : user.avatar_url
-                  }
-                ></UserLogo>
-                <UserName>
-                  {status404 ? "Usuário não encontrado" : user.name}
-                </UserName>
-              </BoxTwo>
-              <BoxThree>
-                <UserBioLabel>
-                  Bio: <UserBio>{user.bio}</UserBio>
-                </UserBioLabel>
+              {loading ? (
+                <Bars size={100} color="#fff" />
+              ) : (
+                <>
+                  <BoxTwo>
+                    <UserLogo
+                      src={
+                        status404
+                          ? "https://c.tenor.com/IHdlTRsmcS4AAAAM/404.gif"
+                          : user.avatar_url
+                      }
+                    ></UserLogo>
+                    <UserName>
+                      {status404 ? "Usuário não encontrado" : user.name}
+                    </UserName>
+                  </BoxTwo>
+                  <BoxThree>
+                    <UserBioLabel>
+                      Bio: <UserBio>{user.bio}</UserBio>
+                    </UserBioLabel>
 
-                <UserFollowersLabel>
-                  Seguidores: <UserFollowers>{user.followers}</UserFollowers>
-                </UserFollowersLabel>
+                    <UserFollowersLabel>
+                      Seguidores:{" "}
+                      <UserFollowers>{user.followers}</UserFollowers>
+                    </UserFollowersLabel>
 
-                <UserPublicReposLabel>
-                  Repositórios Publicos:{" "}
-                  <UserPublicRepos>{user.public_repos}</UserPublicRepos>
-                </UserPublicReposLabel>
+                    <UserPublicReposLabel>
+                      Repositórios Publicos:{" "}
+                      <UserPublicRepos>{user.public_repos}</UserPublicRepos>
+                    </UserPublicReposLabel>
 
-                <UserLocationLabel>
-                  Localização: <UserLocation>{user.location}</UserLocation>
-                </UserLocationLabel>
+                    <UserLocationLabel>
+                      Localização: <UserLocation>{user.location}</UserLocation>
+                    </UserLocationLabel>
 
-                <UserCreatedAtLabel>
-                  Entrou no GitHub:{" "}
-                  <UserCreatedAt>
-                    {moment(user.created_at).format("LL")}
-                  </UserCreatedAt>{" "}
-                </UserCreatedAtLabel>
+                    <UserCreatedAtLabel>
+                      Entrou no GitHub:{" "}
+                      <UserCreatedAt>
+                        {moment(user.created_at).format("LL")}
+                      </UserCreatedAt>{" "}
+                    </UserCreatedAtLabel>
 
-                <UserMostUsedLanguageLabel>
-                  Linguagem mais usada:{" "}
-                  <UserMostUsedLanguage>
-                    {mostUsedLanguage}
-                  </UserMostUsedLanguage>
-                </UserMostUsedLanguageLabel>
+                    <UserMostUsedLanguageLabel>
+                      Linguagem mais usada:{" "}
+                      <UserMostUsedLanguage>
+                        {mostUsedLanguage}
+                      </UserMostUsedLanguage>
+                    </UserMostUsedLanguageLabel>
 
-                <UserOrganizationsLabel>
-                  Organizações:{" "}
-                  <UserOrganizations>{userOrganizations}</UserOrganizations>
-                </UserOrganizationsLabel>
-              </BoxThree>
+                    <UserOrganizationsLabel>
+                      Organizações:{" "}
+                      <UserOrganizations>{userOrganizations}</UserOrganizations>
+                    </UserOrganizationsLabel>
+                  </BoxThree>
+                </>
+              )}
             </BoxOne>
           </Container>
         </div>
