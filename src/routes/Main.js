@@ -36,6 +36,7 @@ import {
 
 function Main() {
   const params = useParams();
+  let rank = "";
   const [loading, setLoading] = useState(true);
   const [status404, setStatus404] = useState(false);
   const [mostUsedLanguage, setMostUsedLanguage] = useState("");
@@ -90,6 +91,25 @@ function Main() {
     setUserOrganizations(organizationList);
   }
 
+  async function rankingSystem() {
+    const events = await fetch(
+      `${apiGithub}${params.username}/events?per_page=100`
+    );
+    const eventsData = await events.json();
+    if (eventsData.length <= 10) {
+      rank = "Poucas atividades nos últimos 90 dias =(";
+    } else if (eventsData.length <= 25) {
+      rank = "Atividades medianas nos últimos 90 dias";
+    } else if (eventsData.length <= 40) {
+      rank = "Boa quantidade de ativiades nos ultimos 90 dias";
+    } else {
+      rank = "ótima quantidade de atividades nos últimos 90 dias !";
+    }
+    console.log("Quantidade: ", eventsData.length);
+    console.log(rank);
+    return rank;
+  }
+
   useEffect(() => {
     // Fetch na API do Git com os parametros do usuario que vieram da página inicial
     fetch(`${apiGithub}${params.username}`, { method: "GET" }).then(
@@ -97,6 +117,8 @@ function Main() {
         if (retorno.status === 200) {
           await getMostUsedLanguages();
           getUserOrganizations();
+          rankingSystem();
+          console.log(rank);
 
           // Se der Status 200 (OK), da um setUser com o retorno da API em json
           setUser(await retorno.json());
