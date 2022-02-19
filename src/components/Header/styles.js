@@ -11,7 +11,6 @@ export const Container = styled.div`
 `;
 
 export const ButtonBack = styled.button`
-  width: 5%;
   border-radius: 8px;
   border: 0.5px solid;
   color: ${(props) => props.theme.colors.text};
