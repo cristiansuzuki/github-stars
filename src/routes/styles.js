@@ -136,4 +136,6 @@ export const BoxThree = styled.div`
 
 export const Ranked = styled.p`
   font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 2%;
 `;

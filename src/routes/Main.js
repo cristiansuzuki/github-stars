@@ -38,6 +38,7 @@ import {
 function Main() {
   const params = useParams();
   let rank = "";
+  const [rankStars, setRankStars] = useState("");
   const [ranked, setRanked] = useState("");
   const [loading, setLoading] = useState(true);
   const [status404, setStatus404] = useState(false);
@@ -99,16 +100,18 @@ function Main() {
     );
     const eventsData = await events.json();
     if (eventsData.length <= 10) {
-      rank = "Poucas atividades nos últimos 90 dias";
+      rank = "Poucas atividades nos últimos 90 dias ";
+      setRankStars("🌟");
     } else if (eventsData.length <= 25) {
       rank = "Atividades medianas nos últimos 90 dias";
+      setRankStars("🌟🌟");
     } else if (eventsData.length <= 40) {
       rank = "Boa quantidade de ativiades nos ultimos 90 dias";
+      setRankStars("🌟🌟🌟");
     } else {
       rank = "Excelente quantidade de atividades nos últimos 90 dias !";
+      setRankStars("🌟🌟🌟🌟");
     }
-    console.log("Quantidade: ", eventsData.length);
-    console.log(rank);
     setRanked(rank);
   }
 
@@ -146,7 +149,8 @@ function Main() {
               ) : (
                 <>
                   <BoxTwo>
-                    {/* <Ranked>{ranked}</Ranked> */}
+                    <Ranked>{ranked}</Ranked>
+                    <Ranked>{rankStars}</Ranked>
                     <UserLogo
                       src={
                         status404
@@ -180,7 +184,7 @@ function Main() {
                     <UserCreatedAtLabel>
                       Entrou no GitHub:{" "}
                       <UserCreatedAt>
-                        {moment(user.created_at).format("LL")}
+                        {status404 ? "" : moment(user.created_at).format("LL")}
                       </UserCreatedAt>{" "}
                     </UserCreatedAtLabel>
 
