@@ -1,6 +1,6 @@
 # GitHub Stars 🌟
 
-Projeto desenvolvido com a API do GitHub, aplicando o nome do usuário que é retornado do input na tela inicial e renderizado na tela principal, trazendo informações e rankeando o usuário de acordo com suas estatísticas na plataforma do GitHub. 
+Projeto desenvolvido com a API do GitHub, aplicando o nome do usuário que é retornado do input na tela inicial e renderizado na tela principal, trazendo informações e rankeando o usuário de acordo com suas estatísticas na plataforma do GitHub
 
 ## Vercel
 
